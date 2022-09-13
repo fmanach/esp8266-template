@@ -1,6 +1,7 @@
 // esp8266-template
 //
 // Created : Sept 13th, 2022 by @fmanach
+// https://github.com/fmanach/esp8266-template
 //
 // This is a simple template to connect an ESP8266 to a WiFi network.
 // It provides feedback on the connection status through the on-board LED.
