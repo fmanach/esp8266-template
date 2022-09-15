@@ -14,7 +14,7 @@
 #include "wifi.h"
 
 // Activate console loggin (9600 bauds) ?
-#define SERIAL_DEBUG false
+#define SERIAL_DEBUG true
 
 // Define the mDNS name
 // Device will be reachable at MDNS_NAME.local
@@ -25,11 +25,10 @@ void setup() {
     Serial.begin(9600);
   }
   pinMode(LED_BUILTIN, OUTPUT);
-  startWifi(WFSSID, WFPSK);
-  startMDNS(MDNS_NAME);
-  blinkStatus(100, 10);
+  startDevice();
 }
 
 void loop() {
+  keepWifiAlive();
   MDNS.update();
 }

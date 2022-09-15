@@ -9,6 +9,13 @@ void blinkStatus(int blinkDelay, int blinkNumber) {
   }
 }
 
+// Start the device by calling starter functions
+void startDevice() {
+  startWifi(WFSSID, WFPSK);
+  startMDNS(MDNS_NAME);
+  blinkStatus(100, 10);
+}
+
 // Initiate the WiFi connection
 void startWifi(char* ssid, char* key) {
   WiFi.mode(WIFI_STA);
@@ -30,5 +37,15 @@ void startMDNS(char* mdnsName) {
     if(SERIAL_DEBUG) {
       Serial.println("mDNS OK");
     }
+  }
+}
+
+// Check for disconnection and restart the init process  
+void keepWifiAlive() {
+  if(!WiFi.isConnected()) {
+    if(SERIAL_DEBUG) {
+      Serial.println("WiFi KO");
+    }
+    startDevice();
   }
 }
